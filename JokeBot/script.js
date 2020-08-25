@@ -109,11 +109,16 @@ var VoiceRSS = {
   },
 };
 
+//disable/enable button
+function toggleButton() {
+    button.disabled = !button.disabled;
+}
+
 //passing Joke to VoiceRSS API
 function tellMe(joke) {
   console.log("tell me:", joke);
   VoiceRSS.speech({
-    key: "1f9e6af18e2b41e8879769a2c606f224",
+    key: "APIKey",
     src: joke,
     hl: "en-us",
     // v: 'Linda',
@@ -137,11 +142,17 @@ async function getJokes() {
     } else {
       joke = data.joke;
     }
+    //text-to-speech
     tellMe(joke);
+    //disable button
+    toggleButton();
   } catch (error) {
     //catch errors
     console.log("Yikes!", error);
   }
 }
 
-getJokes();
+//eventlistener
+button.addEventListener('click', getJokes);
+audioElement.addEventListener('ended', toggleButton);
+
