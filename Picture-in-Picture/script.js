@@ -21,7 +21,7 @@ button.addEventListener('click', async () => {
   // start pic in pic
   await videoElement.requestPictureInPicture();
   // reset button
-  button.disabled = false;
+  ;
 
 });
 
